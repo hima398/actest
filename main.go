@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -15,8 +17,11 @@ func main() {
 		return
 	}
 	defer file.Close()
+	w := bufio.NewWriter(file)
+	w.WriteString(strconv.Itoa(n) + "\n")
 	for i := 0; i < n; i++ {
 		v := rand.Int() % max
-		fmt.Printf("%d ", v)
+		w.WriteString(strconv.Itoa(v) + " ")
 	}
+	w.Flush()
 }
